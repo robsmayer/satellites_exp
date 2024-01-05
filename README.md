@@ -3,6 +3,9 @@ Getting satellite exp
 
 [link to documentation (https://rhodesmill.org/skyfield/toc.html)]
 
+### TODO
+continue attenuation thing :)
+
 ## Loading a Satellite
 
 '''

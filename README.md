@@ -3,8 +3,32 @@ Getting satellite exp
 
 [link to documentation (https://rhodesmill.org/skyfield/toc.html)]
 
-### TODO
-continue attenuation thing :)
+## Ideas/Questions:
+
+    Should satellite be a class ?
+
+
+    Thing is I don't know if the library I'm using is good enough
+    and if my angle calculations are good.
+    I can get infos from satellites TLE and know even how to download
+    and manipulate many of them - I didnt implement it because my computer
+    was going to explode.
+
+    I still don't know what is wrong with the attenuation rechnungen but I think
+    the problem is in the values I choose... 
+
+    Or the problem is my PC, because even the example is not working.
+## Index
+
+-> calculate.py
+
+Mixes realtime with the first attenuation example:
+
+https://itu-rpy.readthedocs.io/en/latest/quickstart.html
+
+and 
+
+https://rhodesmill.org/skyfield/earth-satellites.html
 
 ## Loading a Satellite
 

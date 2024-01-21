@@ -2,7 +2,7 @@ from skyfield.api import EarthSatellite, load, Distance, N,S,E,W, Topos
 from skyfield.api import wgs84, Topos # Important to get latitute longitude (separately)
 import time
 
-# Cleaner version of calculate
+# Cleaner version of getmoreinfo.py and gen_info_v0.py
 
 # Global var time function
 time_scale = load.timescale()
@@ -37,7 +37,7 @@ def get_info(satellite):
         lat,lon = wgs84.latlon_of(geocentric)
         print('  - Latitude:', lat)
         print('  - Longitude:', lon)
-        #print()
+        
 
         relative_pos_xyz(satellite)
         #print()

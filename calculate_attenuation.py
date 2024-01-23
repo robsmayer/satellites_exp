@@ -113,12 +113,9 @@ def start(satellite):
     ax.set_ylabel('Attenuation [dB]')
     ax.grid(which='both', linestyle=':')
 
-    try:
-        plt.legend()
-        plt.show()
-    except KeyboardInterrupt as e:
-        pass
-    #print(el)
+    plt.legend()
+    plt.show()
+    
 if __name__=="__main__":
     satellite = load_sat()
     start(satellite)

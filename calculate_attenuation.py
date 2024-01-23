@@ -32,11 +32,6 @@ D = 1.2 * u.m       # Antenna diameters
 unavailabilities = np.logspace(-1.5, 1.5, 100)
 
 
-
-# Someting is wrong - fixing it 
-
-
-
 def load_sat(): # Be careful with the epoch thing - it means when it's most accurate
     # so if I want a better one, I need to search it - but that's a problem for later...
     
@@ -57,14 +52,42 @@ def get_lat_lon(satellite):
     print('  - Latitude:', lat)
     print('  - Longitude:', lon)
 
-    t_lat = lat.dms()
-    r_lat = t_lat[0] + (t_lat[1] * 0.01)
-    t_lon = lon.dms()
-    r_lon = t_lon[0] + (t_lat[1]* 0.01)
+    # I think the problem in the attenuation thing in this case is
+    # type of the variable: because in the documentation
+    # function x needs float not np.float64 - like it is
 
-    return float(r_lat), float(r_lon)
+    
+    t_lat = lat.dms() # t_lat is a copnverts lat touple  with (deg,','')
+    
+    lat_npfloat = t_lat[0] # If I want a precisse number I need to sum the seconds too
+    float_lat = lat_npfloat.item() # transforms the np float to float
+    
+    
+    t_lon = lon.dms() # Touple for longitude same stuff
+    float_lon = t_lon[0].item() # Made it shorter .,,
+    if(float_lat == -0):
+        float_lat = 0.0    
+    
+    if(float_lon == -0): # I don't know if it's important but some results were 
+        float_lon = 0.0  # -0 and -0 could be a problem ?
 
-def attenuate(el):
+    print('sent longitude = ',type(float_lon) , float_lon) 
+    print('sent latitude = ' ,type(float_lat) , float_lat)
+
+    return float_lat, float_lon
+
+
+
+def start(satellite):
+    
+    lat, lon = get_lat_lon(satellite)
+
+    # Compute the elevation angle between satellite and ground station
+    el = itur.utils.elevation_angle(SAT_ALT, lat, lon, GROUND_LATITUDE, GROUND_LONGITUDE)
+
+        # Define unavailabilities vector
+    unavailabilities = np.logspace(-1.5, 1.5, 100)
+
     # Compute the
     A_g, A_c, A_r, A_s, A_t = [], [], [], [], []
     for p in unavailabilities:
@@ -89,21 +112,14 @@ def attenuate(el):
     ax.set_xlabel('Percentage of time attenuation value is exceeded [%]')
     ax.set_ylabel('Attenuation [dB]')
     ax.grid(which='both', linestyle=':')
-    plt.legend()
 
-def start(satellite):
     try:
-        while (True):
-            lat, lon = get_lat_lon(satellite)
-
-            el = itur.utils.elevation_angle(SAT_ALT, lat, lon, GROUND_LATITUDE, GROUND_LONGITUDE)
-            print(el)
-            attenuate(el)
-            time.sleep(5)
-    except KeyboardInterrupt:
-         pass
-
-
+        plt.legend()
+        plt.show()
+    except KeyboardInterrupt as e:
+        pass
+    #print(el)
 if __name__=="__main__":
     satellite = load_sat()
     start(satellite)
+    # start(satellite)

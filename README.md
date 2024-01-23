@@ -3,6 +3,14 @@ Getting satellite exp
 
 [link to documentation (https://rhodesmill.org/skyfield/toc.html)]
 
+# next stepppp
+    study about 
+ free space propagation model
+ frisyw
+ separate atenuation models
+    Know how to calculate them separatly and 
+know which function calculate whats
+    then sum all attenuation up
 ## Ideas/Questions:
 
     Should satellite be a class ?

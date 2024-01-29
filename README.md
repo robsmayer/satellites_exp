@@ -11,6 +11,9 @@ Getting satellite exp
     Know how to calculate them separatly and 
 know which function calculate whats
     then sum all attenuation up
+
+
+    Trying to get the real altitude between observer and sat
 ## Ideas/Questions:
 
     Should satellite be a class ?

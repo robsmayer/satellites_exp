@@ -80,7 +80,7 @@ def relativ_pos_altitude_azimuth(satellite):
 
         if alt.degrees > 0:
             print('The ISS is above the horizon')
-
+        print(type(alt))
         print('  - Altitude:', alt)
         print('  - Azimuth:', az)
         print('  - Distance: {:.1f} km'.format(distance.km)) # That is the most important

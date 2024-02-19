@@ -48,8 +48,8 @@ unavailabilities = np.logspace(-1.5, 1.5, 100)
 def load_sat(): # Be careful with the epoch thing - it means when it's most accurate
     # so if I want a better one, I need to search it - but that's a problem for later...
     
-    line1 = '1 23839U 96020A   24020.91299453 -.00000053  00000+0  00000+0 0  9999'
-    line2 = '2 23839   8.7526  54.0465 0004650 224.8333 246.4567  0.99975482101479'
+    line1 = '1 23839U 96020A   24049.61641156  .00000123  00000+0  00000+0 0  9995'
+    line2 = '2 23839   8.8135  53.8221 0003720 264.9195  97.6922  0.9998217110176'
     satellite = EarthSatellite(line1, line2, 'INMARSAT 3-F1', time_scale)
     
     return satellite
@@ -92,9 +92,7 @@ def get_lat_lon(satellite):
 def getFrequency(satellite):
     
     t = time_scale.now()
-    
-    # t1= time_scale.now()
-    # t_var =
+
     ground_station = wgs84.latlon(GROUND_LATITUDE,GROUND_LONGITUDE,GROUND_ALTITUDE)
             
     difference = satellite - ground_station # Study what does this means
@@ -107,6 +105,8 @@ def getFrequency(satellite):
     print(np.array2string(range_rate.km_per_s, precision=2), "km/s")
 
     speed_of_light = c
+    print("speed of light " , c ," # the range ", the_range.m)
+
     frequency = np.divide(speed_of_light,the_range.m)
     print(frequency, "Hz")
 
